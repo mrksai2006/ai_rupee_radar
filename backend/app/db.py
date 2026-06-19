@@ -10,9 +10,16 @@ class Base(DeclarativeBase):
     pass
 
 
-settings = get_settings()
+def _connect_args_for(database_url: str) -> dict:
+    if database_url.startswith("sqlite"):
+        return {"check_same_thread": False}
+    if database_url.startswith("postgresql") and "sslmode=" not in database_url:
+        return {"sslmode": "require"}
+    return {}
 
-connect_args = {"check_same_thread": False} if settings.database_url.startswith("sqlite") else {}
+
+settings = get_settings()
+connect_args = _connect_args_for(settings.database_url)
 engine = create_engine(settings.database_url, connect_args=connect_args)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
