@@ -1,5 +1,6 @@
 from functools import lru_cache
 
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -29,6 +30,14 @@ class Settings(BaseSettings):
     groq_max_txns_per_upload: int = 15
     groq_upload_time_budget_sec: int = 45
     groq_max_description_chars: int = 48
+
+    @field_validator("database_url", mode="before")
+    @classmethod
+    def normalize_database_url(cls, value: str) -> str:
+        # Railway and other hosts often provide postgres://; SQLAlchemy 2 expects postgresql://
+        if isinstance(value, str) and value.startswith("postgres://"):
+            return value.replace("postgres://", "postgresql://", 1)
+        return value
 
     @property
     def cors_origin_list(self) -> list[str]:
