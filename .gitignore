@@ -20,10 +20,10 @@ htmlcov/
 .env
 .env.local
 
-# Database
+# Database (runtime SQLite directory — not app merchant data)
+backend/data/
 *.db
 *.sqlite3
-data/
 
 # Node
 node_modules/
