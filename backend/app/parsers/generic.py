@@ -11,7 +11,7 @@ DESC_HEADERS = ("description", "narration", "details", "remarks", "transaction r
 WITHDRAWAL_HEADERS = ("withdrawal", "withdrawal amt.", "withdrawal amount", "debit", "debit amount", "dr")
 DEPOSIT_HEADERS = ("deposit", "deposit amt.", "deposit amount", "credit", "credit amount", "cr")
 AMOUNT_HEADERS = ("amount", "transaction amount", "txn amount")
-TYPE_HEADERS = ("type", "dr/cr", "debit/credit")
+TYPE_HEADERS = ("type", "dr/cr", "debit/credit", "direction", "transaction type")
 
 
 class GenericCsvParser:
