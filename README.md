@@ -143,8 +143,9 @@ After deploy, update Railway `CORS_ORIGINS` with your Vercel production URL.
 
 | Service | URL |
 |---------|-----|
-| Frontend | _Set after Vercel deploy_ |
-| API | _Set after Railway deploy_ |
+| Frontend | https://ai-rupee-radar.vercel.app |
+| Backend API | https://airupeeradar-production.up.railway.app |
+| Health Check | https://airupeeradar-production.up.railway.app/api/v1/health |
 
 ## Documentation
 
